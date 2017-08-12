@@ -1,1 +1,1 @@
-web: PromotionCode.py
+web: python PromotionCode.py
