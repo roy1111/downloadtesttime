@@ -1,1 +1,1 @@
-web: gunicorn PromotionCode:app
+web: python PromotionCode.py
