@@ -1,1 +1,1 @@
-web: gunicorn PromotionCode.py 
+web: gunicorn PromotionCode.py --log-file -
