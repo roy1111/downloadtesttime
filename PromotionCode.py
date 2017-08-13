@@ -1,1 +1,2 @@
-print 'hi'
+x = 1+2
+print (x)
