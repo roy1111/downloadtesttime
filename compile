@@ -1,0 +1,65 @@
+#!/bin/sh
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+error() {
+  echo " !     $*" >&2
+  exit 1
+}
+
+topic() {
+  echo "-----> $*"
+}
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+topic "BUILD_DIR: $BUILD_DIR"
+topic "CACHE_DIR: $CACHE_DIR"
+
+APT_CACHE_DIR="$CACHE_DIR/apt/cache"
+APT_STATE_DIR="$CACHE_DIR/apt/state"
+
+mkdir -p "$APT_CACHE_DIR/archives/partial"
+mkdir -p "$APT_STATE_DIR/lists/partial"
+
+APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
+
+topic "Updating apt caches"
+apt-get $APT_OPTIONS update | indent
+
+topic "Fetching .debs for xvfb and unzip"
+apt-get $APT_OPTIONS -y -d install xvfb unzip | indent
+
+topic "Fetching google chrome"
+CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+curl $CHROME_URL -s -o $APT_CACHE_DIR/archives/google-chrome-stable_current_amd64.deb
+
+mkdir -p $BUILD_DIR/.apt
+
+for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
+  topic "Installing $(basename $DEB)"
+  dpkg -x $DEB $BUILD_DIR/.apt/
+done
+
+topic "Downloading and installing ChromeDriver to ${BUILD_DIR}"
+mkdir -p "$BUILD_DIR/vendor/chromedriver/"
+mkdir -p "$BUILD_DIR/vendor/chromedriver/bin"
+export PATH="$BUILD_DIR/vendor/chromedriver/bin":$PATH
+
+chromedriver_url="http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip"
+curl $chromedriver_url -s -o "$BUILD_DIR/vendor/chromedriver/chromedriver.zip"
+unzip "$BUILD_DIR/vendor/chromedriver/chromedriver.zip"
+rm "$BUILD_DIR/vendor/chromedriver/chromedriver.zip"
+mv "$BUILD_DIR/vendor/chromedriver/chromedriver" "$BUILD_DIR/vendor/chromedriver/bin"
+
+topic "exporting PATH and LIBRARY_PATH"
+PROFILE_PATH="$BUILD_DIR/.profile.d/chrome.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH=".apt/usr/bin:vendor/chromedriver/bin:$PATH"'>> $PROFILE_PATH
+echo 'export LD_LIBRARY_PATH=".apt/usr/lib:\$LD_LIBRARY_PATH"'>> $PROFILE_PATH
+echo 'export INCLUDE_PATH=".apt/usr/include:\$INCLUDE_PATH"'>> $PROFILE_PATH
+echo 'export CPATH="\$INCLUDE_PATH"'>> $PROFILE_PATH
+echo 'export CPPPATH="\$INCLUDE_PATH"'>> $PROFILE_PATH
