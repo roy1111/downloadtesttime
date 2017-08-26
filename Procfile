@@ -1,1 +1,1 @@
-web: python PromotionCode.py
+web: python InsFllow.py
