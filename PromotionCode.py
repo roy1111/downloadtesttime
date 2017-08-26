@@ -86,11 +86,14 @@ Urlist = [
 Facebook_User_Name = 'royhamster67@gmail.com'
 Facebook_User_Password = '158158123'
 Code = 'K23154415'
-
+GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
+CHROMEDRIVER_PATH  = r"/app/.chromedriver/bin/chromedriver"
 while True:
-
-    driver = webdriver.Chrome()
-
+    chrome_options = Options()
+    chrome_options.binary_location = GOOGLE_CHROME_BIN
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     driver.get('https://www.facebook.com/login')
     print 'Site Reached: ', driver.title
 
