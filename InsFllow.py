@@ -6,9 +6,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-import os
-from flask import Flask
-
 
 # from pyvirtualdisplay import Display
 #
@@ -147,12 +144,6 @@ CounterUntilOneDay = 0
 
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH  = r"/app/.chromedriver/bin/chromedriver"
-
-## ON THE REQUIREMENTS COPY "Flask==0.7.2" - CHANGES PORT
-app = Flask(__name__)
-@app.route("/")
-port = int(os.environ.get("PORT", 5000))
-app.run(host='0.0.0.0', port=port)
 
 chrome_options = Options()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
