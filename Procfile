@@ -1,1 +1,1 @@
-web: python InsFllow.py 
+python InsFllow.py 
