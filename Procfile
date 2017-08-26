@@ -1,1 +1,1 @@
-web: python InsFllow.py --liveserver=0.0.0.0:$PORT
+web: python InsFllow.py 
