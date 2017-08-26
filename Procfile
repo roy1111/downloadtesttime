@@ -1,1 +1,1 @@
-web: python InsFllow.py
+web: python InsFllow.py -p $PORT
