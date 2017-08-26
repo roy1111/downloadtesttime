@@ -39,7 +39,7 @@ def enterCelebrityAccountFollowers(url):
     ## ENTERS CELEBRITY ACCOUNT FOLLOWERS
     Followers_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'followers')))
     Followers_button.click()
-    print (driver.title)
+#     print (driver.title)
 
 
 def getInsideSomeAccount(index):
@@ -73,7 +73,7 @@ def followActiveAccount():
     while True:
         getInsideSomeAccount(index)
         time.sleep(3)
-        print ("Site At Profile: ", driver.title)
+#         print ("Site At Profile: ", driver.title)
 
         try:
             WebDriverWait(driver, 2).until(
