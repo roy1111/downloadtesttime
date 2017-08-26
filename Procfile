@@ -1,1 +1,1 @@
-web: python InsFllow.py
+worker: python InsFllow.py
