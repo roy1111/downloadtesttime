@@ -1,1 +1,1 @@
-web: python InsFllow.py -b 0.0.0.0:$PORT
+web: python InsFllow.py runserver 0.0.0.0:$PORT
