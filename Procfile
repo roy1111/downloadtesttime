@@ -1,1 +1,1 @@
-instagramfollow: python InsFllow.py 
+web: python InsFllow.py runserver 0.0.0.0:$PORT
