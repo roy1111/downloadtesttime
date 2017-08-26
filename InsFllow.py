@@ -17,19 +17,19 @@ from selenium.webdriver.chrome.options import Options
 def loginToAccount(UsrName, Password):
     ## GOES TO INSTAGRAM LOGIN PAGE
     driver.get('https://www.instagram.com/accounts/login/')
-#     print (driver.title)
-    driver.save_screenshot('screenie.png')
+    print (driver.title).encode('utf-8')
+    # driver.save_screenshot('screenie.png')
 
     ## ENTERS THE USERNAME AND PASSWORD
-    user = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
+    user = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
     user.send_keys(UsrName)
     time.sleep(1)
-    passwordd = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//input[@name='password']")))
+    passwordd = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='password']")))
     passwordd.send_keys(Password)
     time.sleep(1)
     driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
     time.sleep(2)
-    print (driver.title)
+    print (driver.title).encode('utf-8')
 
 
 def enterCelebrityAccountFollowers(url):
@@ -37,15 +37,14 @@ def enterCelebrityAccountFollowers(url):
     driver.get(url)
 
     ## ENTERS CELEBRITY ACCOUNT FOLLOWERS
-    Followers_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'followers')))
+    Followers_button = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'followers')))
     Followers_button.click()
-#     print (driver.title)
+    print (driver.title).encode('utf-8')
 
 
 def getInsideSomeAccount(index):
     ## ENTERS THE ACCOUNT PROFILE AND WAITS FOR ALL PROFILES TO LOAD - THEN CLICKS ON PROFILE BY INDEX
     WebDriverWait(driver, 5).until(EC.presence_of_all_elements_located((By.CLASS_NAME, '_6e4x5')))  ##ELEMENT NEEDS CHANGE* FINDS ALL LIST ITEMS
-    driver.save_screenshot('screenie.png')
     Profile = WebDriverWait(driver, 5) \
         .until(EC.presence_of_all_elements_located((By.XPATH, "//*[@class='_2g7d5 notranslate _o5iw8']")))[
         index]  ## ELEMENT NEEDS CHANGE
@@ -73,7 +72,7 @@ def followActiveAccount():
     while True:
         getInsideSomeAccount(index)
         time.sleep(3)
-#         print ("Site At Profile: ", driver.title)
+        print ("Site At Profile: ", driver.title.encode('utf-8'))
 
         try:
             WebDriverWait(driver, 2).until(
@@ -92,7 +91,7 @@ def followActiveAccount():
 
                 after = time.time()
 
-                if int(after) - int(now) > 87:
+                if int(after) - int(now) > 90:
                     follow_button = driver.find_element_by_xpath(
                         "//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
                     follow_button.click()
@@ -152,7 +151,7 @@ chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-# driver.maximize_window()
+driver.maximize_window()
 
 loginToAccount(username, password)
 enterCelebrityAccountFollowers(celebrityAccountURL)
