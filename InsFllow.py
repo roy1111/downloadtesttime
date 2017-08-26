@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 import time
-import app
-import os
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -147,9 +145,6 @@ CounterUntilOneDay = 0
 
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH  = r"/app/.chromedriver/bin/chromedriver"
-
-port = int(os.environ.get('PORT', 5000))
-app.run(host='0.0.0.0', port=port)
 
 chrome_options = Options()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
