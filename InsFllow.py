@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 import time
