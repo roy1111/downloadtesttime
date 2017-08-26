@@ -146,11 +146,15 @@ CounterUntilOneDay = 0
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH  = r"/app/.chromedriver/bin/chromedriver"
 
+port = int(os.environ.get('PORT', 5000))
+app.run(host='0.0.0.0', port=port)
+
 chrome_options = Options()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+
 driver.maximize_window()
 
 loginToAccount(username, password)
