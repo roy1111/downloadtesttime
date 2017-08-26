@@ -145,8 +145,6 @@ CounterUntilOneDay = 0
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH  = r"/app/.chromedriver/bin/chromedriver"
 
-run(host='0.0.0.0')
-
 chrome_options = Options()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument('--disable-gpu')
