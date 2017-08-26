@@ -17,7 +17,7 @@ from selenium.webdriver.chrome.options import Options
 def loginToAccount(UsrName, Password):
     ## GOES TO INSTAGRAM LOGIN PAGE
     driver.get('https://www.instagram.com/accounts/login/')
-    print (driver.title)
+#     print (driver.title)
     driver.save_screenshot('screenie.png')
 
     ## ENTERS THE USERNAME AND PASSWORD
