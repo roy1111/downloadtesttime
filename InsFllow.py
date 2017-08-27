@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from os import environ
+from flask import Flask
 
 # from pyvirtualdisplay import Display
 #
@@ -131,7 +133,9 @@ def followActiveAccount():
             print (e)
             return 0
 
-        
+ 
+app = Flask(__name__)
+app.run(environ.get('5000'))
 
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH  = r"/app/.chromedriver/bin/chromedriver"
