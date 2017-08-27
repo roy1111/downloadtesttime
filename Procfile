@@ -1,1 +1,1 @@
-bot: newrelic-admin run-program python InsFllow.py
+web: python <InsFllow.py>
