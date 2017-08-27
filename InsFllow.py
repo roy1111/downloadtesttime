@@ -101,7 +101,7 @@ def followActiveAccount():
                     print ('Fictive Follow: ', AmountOfFectiveFollowed)
                     return AmountOfFectiveFollowed
 
-                ## CHECKS IF ACCOUNT HAS MORE THAN 22 POSTS - IF DOES, FOLLOWED
+                ## CHECKS IF ACCOUNT HAS MORE THAN 40 POSTS - IF DOES, FOLLOWED
                 elif 40 <= int(PostAmount) < 151:
                     follow_button = driver.find_element_by_xpath(
                         "//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
@@ -109,11 +109,11 @@ def followActiveAccount():
                     WebDriverWait(driver, 10).until(
                         EC.presence_of_element_located(
                             (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
+                    AmountOfActiveFollowed += 1
                     print ('Active Follow: ', AmountOfActiveFollowed)
                     after = time.time()
                     LoadingTime = waitUntilTimeReached(now, after, 91)
                     time.sleep(LoadingTime)
-                    AmountOfActiveFollowed += 1
                     return AmountOfActiveFollowed
 
             ## IF, ONE OF THE IF'S STATEMENTS ARE FALSE, DRIVER GOES BACK TO LIST TO TRY NEXT ACCOUNT
