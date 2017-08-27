@@ -135,7 +135,7 @@ def followActiveAccount():
 
  
 app = Flask(__name__)
-app.run(environ.get('5000'))
+app.run(host='0.0.0.0' environ.get('5000'))
 
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH  = r"/app/.chromedriver/bin/chromedriver"
