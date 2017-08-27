@@ -1,1 +1,1 @@
-web: python InsFllow.py runserver 0.0.0.0:$PORT --timeout 1000000000000000000000000000000000000000000000000000000000000000000000
+bot: run-program python InsFllow.py
