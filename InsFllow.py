@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 import time
@@ -13,11 +13,11 @@ from selenium.webdriver.chrome.options import Options
 # display = Display(visible=0, size=(1080, 920))
 # display.start()
 
+
 def loginToAccount(UsrName, Password):
     ## GOES TO INSTAGRAM LOGIN PAGE
     driver.get('https://www.instagram.com/accounts/login/')
     print (driver.title).encode('utf-8')
-    # driver.save_screenshot('screenie.png')
 
     ## ENTERS THE USERNAME AND PASSWORD
     user = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
@@ -90,7 +90,7 @@ def followActiveAccount():
 
                 after = time.time()
 
-                if int(after) - int(now) > 90:
+                if int(after) - int(now) > 91:
                     follow_button = driver.find_element_by_xpath(
                         "//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
                     follow_button.click()
@@ -109,12 +109,11 @@ def followActiveAccount():
                     WebDriverWait(driver, 10).until(
                         EC.presence_of_element_located(
                             (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
-                    AmountOfActiveFollowed += 1
                     print ('Active Follow: ', AmountOfActiveFollowed)
-                    enterCelebrityAccountFollowers(celebrityAccountURL)
                     after = time.time()
                     LoadingTime = waitUntilTimeReached(now, after, 91)
                     time.sleep(LoadingTime)
+                    AmountOfActiveFollowed += 1
                     return AmountOfActiveFollowed
 
             ## IF, ONE OF THE IF'S STATEMENTS ARE FALSE, DRIVER GOES BACK TO LIST TO TRY NEXT ACCOUNT
@@ -130,17 +129,9 @@ def followActiveAccount():
 
         except Exception as e:  ## THE TRY AND CATCH WERE MADE FOR CONDITION TO KNOW THE PICTURE DATE (IF IT HAD BEEN UPLOADED LATELY)
             print (e)
-            enterCelebrityAccountFollowers(celebrityAccountURL)
             return 0
-            pass
 
-
-username = 'onpoint_facts'
-password = '158158123123'
-celebrityAccountURL = 'https://www.instagram.com/luissuarez9/'
-
-SumFollowesToday = 0
-CounterUntilOneDay = 0
+        
 
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH  = r"/app/.chromedriver/bin/chromedriver"
@@ -152,12 +143,19 @@ chrome_options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
 driver.maximize_window()
+        
+username = 'onpoint_facts'
+password = '158158123123'
+celebrityAccountURL = 'https://www.instagram.com/luissuarez9/'
+
+SumFollowesToday = 0
+CounterUntilOneDay = 0
 
 loginToAccount(username, password)
-enterCelebrityAccountFollowers(celebrityAccountURL)
 
 while True:
     for x in range(0, 40):
+        enterCelebrityAccountFollowers(celebrityAccountURL)
         SumFollowesToday += followActiveAccount()
 
     ## CHECKS IF 24 HOURS HAD PASSED - SUPPOSED TO PRINT 960 FOLLOWERS
