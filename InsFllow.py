@@ -186,8 +186,8 @@ def Unfollow(FollowedUrList):
     print 'UNFOLLOWED ACCOUNTS FOR TODAY:', Unfollowed
 
 
-username = 'alpha__millionaire'
-password = '158158123'
+username = 'onpoint_facts'
+password = '158158123123'
 celebrityAccountURL = 'https://www.instagram.com/luissuarez9/'
 
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
