@@ -153,7 +153,6 @@ def followActiveAccount():
 def Unfollow(FollowedUrList):
     Unfollowed = 0
 
-    print FollowedUrList
     now = time.time()
 
     for url in FollowedUrList:
