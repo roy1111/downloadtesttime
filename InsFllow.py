@@ -158,13 +158,14 @@ def Unfollow(FollowedUrList):
     for url in FollowedUrList:
         try:
             driver.get(url)
-            Unfollow_button = WebDriverWait(driver, 2).until(EC.presence_of_element_located(
-                    (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
-
+           
             after = time.time()
 
             LoadingTime = waitUntilTimeReached(now, after, 45)
             time.sleep(LoadingTime)
+            
+            Unfollow_button = WebDriverWait(driver, 2).until(EC.presence_of_element_located(
+                    (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
 
             Unfollow_button.click()
 
