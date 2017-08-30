@@ -54,7 +54,7 @@ def loginToAccount(UsrName, Password):
         ## HANDLE SECURITY CHECK
         print (driver.current_url)
         
-     except:
+    except:
         pass
     try:
         permission = WebDriverWait(driver, 3).until(EC.presence_of_element_located(
