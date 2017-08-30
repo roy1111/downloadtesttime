@@ -30,6 +30,17 @@ def loginToAccount(UsrName, Password):
     driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
     time.sleep(2)
     print (driver.title).encode('utf-8')
+    
+    ## HANDLE SECURITY CHECK
+    print (driver.current_url)
+    try:
+        permission = WebDriverWait(driver, 3).until(EC.presence_of_element_located(
+                (By.XPATH, "//button[contains(.,'This Was Me')")))
+
+        permission.click()
+
+    except:
+        pass
 
 
 def enterCelebrityAccountFollowers(url):
