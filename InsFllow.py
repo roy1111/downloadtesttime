@@ -31,6 +31,24 @@ def loginToAccount(UsrName, Password):
     time.sleep(2)
     print (driver.title).encode('utf-8')
     
+    ## DELETE AFTER
+    codee = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='securityCode']")))
+    codee.send_keys('073951')
+
+    driver.get('https://www.instagram.com/accounts/login/')
+    print driver.title.encode('utf-8')
+
+    ## ENTERS THE USERNAME AND PASSWORD
+    user = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
+    user.send_keys(UsrName)
+    time.sleep(1)
+    passwordd = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='password']")))
+    passwordd.send_keys(Password)
+    time.sleep(1)
+    driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
+    time.sleep(2)
+    print driver.title.encode('utf-8')
+    
     ## HANDLE SECURITY CHECK
     print (driver.current_url)
     try:
