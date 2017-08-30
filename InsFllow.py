@@ -28,29 +28,34 @@ def loginToAccount(UsrName, Password):
     passwordd.send_keys(Password)
     time.sleep(1)
     driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
-    time.sleep(2)
+    time.sleep(10)
     print (driver.title).encode('utf-8')
+    print (driver.current_url)
     
     ## DELETE AFTER
-    codee = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='securityCode']")))
-    codee.send_keys('073951')
+    try:
+        codee = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='securityCode']")))
+        codee.send_keys('073951')
 
-    driver.get('https://www.instagram.com/accounts/login/')
-    print driver.title.encode('utf-8')
+        driver.get('https://www.instagram.com/accounts/login/')
+        print driver.title.encode('utf-8')
 
-    ## ENTERS THE USERNAME AND PASSWORD
-    user = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
-    user.send_keys(UsrName)
-    time.sleep(1)
-    passwordd = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='password']")))
-    passwordd.send_keys(Password)
-    time.sleep(1)
-    driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
-    time.sleep(2)
-    print driver.title.encode('utf-8')
-    
-    ## HANDLE SECURITY CHECK
-    print (driver.current_url)
+        ## ENTERS THE USERNAME AND PASSWORD
+        user = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
+        user.send_keys(UsrName)
+        time.sleep(1)
+        passwordd = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='password']")))
+        passwordd.send_keys(Password)
+        time.sleep(1)
+        driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
+        time.sleep(2)
+        print driver.title.encode('utf-8')
+
+        ## HANDLE SECURITY CHECK
+        print (driver.current_url)
+        
+     except:
+        pass
     try:
         permission = WebDriverWait(driver, 3).until(EC.presence_of_element_located(
                 (By.XPATH, "//button[contains(.,'This Was Me')")))
