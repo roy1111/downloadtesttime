@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 from selenium import webdriver
 import time
@@ -108,7 +108,7 @@ def followActiveAccount():
     WebDriverWait(driver, 5).until(EC.presence_of_element_located(
         (By.CLASS_NAME, '_fd86t')))  ##ELEMENT NEEDS CHANGE* WAITS UNTIL THE AMOUNT POSTS ELEMENT IS AVAILABLE
 
-    print ("Site At Profile: ") + driver.title.encode('utf-8')
+    print ("Site At Profile: "),driver.title.encode('utf-8')
     time.sleep(2)
 
     for y in range(0, 1):
@@ -134,10 +134,10 @@ def followActiveAccount():
                     time.sleep(2)
                     WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME,
                                                                                    '_fd86t')))  ##ELEMENT NEEDS CHANGE* WAITS UNTIL THE AMOUNT POSTS ELEMENT IS AVAILABLE
-                    print ("Site At Profile: ") + driver.title.encode('utf-8')
+                    print ("Site At Profile: "),driver.title.encode('utf-8')
 
                     PostAmount = driver.find_element_by_class_name('_fd86t').text
-                    print ('Number Of Posts: ') + PostAmount
+                    print ('Number Of Posts: '),PostAmount
 
                     follow_button1 = driver.find_elements_by_xpath(
                         "//button[contains(.,'Following')]")  ## NO NEED TO CHANGE ELEMENT
@@ -151,12 +151,12 @@ def followActiveAccount():
 
                         if int(after) - int(now) > 44:  ##THERE IS A TIME.SLEEP FOR 2 SEC
                             AmountOfFectiveFollowed += 1
-                            print ('Fictive Follow: ') + AmountOfFectiveFollowed
+                            print ('Fictive Follow: '),AmountOfFectiveFollowed
                             break
 
                         ## CHECKS IF ACCOUNT HAS MORE THAN 40 POSTS - IF DOES, FOLLOWED
                         elif 40 <= int(PostAmount) < 200:
-                            print ('Active Follow: ') + AmountOfActiveFollowed
+                            print ('Active Follow: '),AmountOfActiveFollowed
                             after = time.time()
                             LoadingTime = waitUntilTimeReached(now, after, 44)
                             time.sleep(LoadingTime)
@@ -179,7 +179,7 @@ def followActiveAccount():
                     driver.back()
                     enterCelebrityAccountFollowers(celebrityAccountURL)
 
-    print ("TODAY PROGRAM FOLLOWED: ") + FollowedUrList.__len__()
+    print ("TODAY PROGRAM FOLLOWED: "),FollowedUrList.__len__()
     return FollowedUrList
 
 
@@ -208,13 +208,13 @@ def Unfollow(FollowedUrList):
             now = time.time()
 
             Unfollowed += 1
-            print ('Unfollowed ') + Unfollowed + ('accounts')
+            print ('Unfollowed '),Unfollowed,('accounts')
 
         except Exception as e:
             print (e)
             pass
 
-    print ('UNFOLLOWED ACCOUNTS FOR TODAY:') + Unfollowed
+    print ('UNFOLLOWED ACCOUNTS FOR TODAY:'),Unfollowed
 
 
 username = 'onpoint_facts'
