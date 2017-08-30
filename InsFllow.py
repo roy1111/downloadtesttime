@@ -32,6 +32,29 @@ def loginToAccount(UsrName, Password):
     print (driver.title).encode('utf-8')
     print (driver.current_url)
     
+      ## DELETE AFTER
+    submit_button = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//button[contains(.,'Submit')]"))) 
+    submit_button.click()
+    codee = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='securityCode']")))
+    codee.send_keys('b')
+
+    driver.get('https://www.instagram.com/accounts/login/')
+    print driver.title.encode('utf-8')
+
+    ## ENTERS THE USERNAME AND PASSWORD
+    user = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
+    user.send_keys(UsrName)
+    time.sleep(1)
+    passwordd = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='password']")))
+    passwordd.send_keys(Password)
+    time.sleep(1)
+    driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
+    time.sleep(2)
+    print driver.title.encode('utf-8')
+
+    ## HANDLE SECURITY CHECK
+    print (driver.current_url)
+    
    
 def enterCelebrityAccountFollowers(url):
     ## GOES TO THE CELEBRITY ACCOUNT
