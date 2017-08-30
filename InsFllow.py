@@ -111,7 +111,7 @@ def followActiveAccount():
     print ("Site At Profile: "),driver.title.encode('utf-8')
     time.sleep(2)
 
-    for y in range(0, 1):
+    for y in range(0, 12):
         for x in range(0, 80): 
 
             follow_button = driver.find_element_by_xpath("//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
@@ -184,21 +184,21 @@ def followActiveAccount():
 
 
 def Unfollow(FollowedUrList):
-    Unfollowed = 1
+    Unfollowed = 0
 
     now = time.time()
 
     for url in FollowedUrList:
         try:
             driver.get(url)
-                    
-            Unfollow_button = WebDriverWait(driver, 2).until(EC.presence_of_element_located(
-                    (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
             
             after = time.time()
 
             LoadingTime = waitUntilTimeReached(now, after, 44)
             time.sleep(LoadingTime)
+                    
+            Unfollow_button = WebDriverWait(driver, 2).until(EC.presence_of_element_located(
+                    (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
 
             Unfollow_button.click()
 
@@ -237,5 +237,5 @@ loginToAccount(username, password)
 while True:
     Followed = followActiveAccount()
     Unfollow(Followed)
-    break
+
   
