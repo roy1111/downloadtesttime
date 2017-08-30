@@ -155,7 +155,7 @@ def followActiveAccount():
                             break
 
                         ## CHECKS IF ACCOUNT HAS MORE THAN 40 POSTS - IF DOES, FOLLOWED
-                        elif 40 <= PostAmount < 200:
+                        elif 40 <= int(PostAmount) < 200:
                             print ('Active Follow: ') + AmountOfActiveFollowed
                             after = time.time()
                             LoadingTime = waitUntilTimeReached(now, after, 44)
