@@ -176,8 +176,8 @@ def followActiveAccount():
 
                 except Exception as e:
                     print (e)
-                    driver.back()
                     enterCelebrityAccountFollowers(celebrityAccountURL)
+                    index = 0
 
     print ("TODAY PROGRAM FOLLOWED: "),FollowedUrList.__len__()
     return FollowedUrList
