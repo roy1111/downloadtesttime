@@ -207,11 +207,12 @@ def Unfollow(FollowedUrList):
                     (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
 
             Unfollow_button.click()
+            
+            now = time.time()
 
             WebDriverWait(driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, "//button[contains(.,'Follow')]")))
             
-            now = time.time()
 
             Unfollowed += 1
 #             print ('Unfollowed '),Unfollowed,('accounts')
