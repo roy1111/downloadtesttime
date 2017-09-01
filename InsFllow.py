@@ -1,6 +1,7 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 from selenium import webdriver
+from datetime import datetime
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -71,7 +72,7 @@ def enterCelebrityAccountFollowers(url):
     Followers_button = WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'followers')))
     Followers_button.click()
-    print (driver.title).encode('utf-8')
+#     print (driver.title).encode('utf-8')
 
 
 def getInsideSomeAccount(index):
@@ -108,10 +109,13 @@ def followActiveAccount():
     WebDriverWait(driver, 5).until(EC.presence_of_element_located(
         (By.CLASS_NAME, '_fd86t')))  ##ELEMENT NEEDS CHANGE* WAITS UNTIL THE AMOUNT POSTS ELEMENT IS AVAILABLE
 
-    print ("Site At Profile: "),driver.title.encode('utf-8')
+#     print ("Site At Profile: "),driver.title.encode('utf-8')
     time.sleep(2)
 
     for y in range(0, 12):
+        
+        print datetime.today()
+
         for x in range(0, 80): 
 
             follow_button = driver.find_element_by_xpath("//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
@@ -119,10 +123,12 @@ def followActiveAccount():
             FollowedUrList.append(driver.current_url)
 
             follow_button.click()
+            
             WebDriverWait(driver, 10).until(EC.presence_of_element_located(
                 (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
             
             now = time.time()
+            
 
             enterCelebrityAccountFollowers(celebrityAccountURL)
             index = 0
@@ -134,10 +140,10 @@ def followActiveAccount():
                     time.sleep(2)
                     WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME,
                                                                                    '_fd86t')))  ##ELEMENT NEEDS CHANGE* WAITS UNTIL THE AMOUNT POSTS ELEMENT IS AVAILABLE
-                    print ("Site At Profile: "),driver.title.encode('utf-8')
+#                     print ("Site At Profile: "),driver.title.encode('utf-8')
 
                     PostAmount = driver.find_element_by_class_name('_fd86t').text
-                    print ('Number Of Posts: '),PostAmount
+#                     print ('Number Of Posts: '),PostAmount
 
                     follow_button1 = driver.find_elements_by_xpath(
                         "//button[contains(.,'Following')]")  ## NO NEED TO CHANGE ELEMENT
@@ -151,12 +157,12 @@ def followActiveAccount():
 
                         if int(after) - int(now) > 44:  ##THERE IS A TIME.SLEEP FOR 2 SEC
                             AmountOfFectiveFollowed += 1
-                            print ('Fictive Follow: '),AmountOfFectiveFollowed
+#                             print ('Fictive Follow: '),AmountOfFectiveFollowed
                             break
 
                         ## CHECKS IF ACCOUNT HAS MORE THAN 40 POSTS - IF DOES, FOLLOWED
                         elif 40 <= int(PostAmount) < 200:
-                            print ('Active Follow: '),AmountOfActiveFollowed
+#                             print ('Active Follow: '),AmountOfActiveFollowed
                             after = time.time()
                             LoadingTime = waitUntilTimeReached(now, after, 44)
                             time.sleep(LoadingTime)
@@ -175,7 +181,7 @@ def followActiveAccount():
                         driver.back()
 
                 except Exception as e:
-                    print (e)
+#                     print (e)
                     enterCelebrityAccountFollowers(celebrityAccountURL)
                     index = 0
 
@@ -208,10 +214,10 @@ def Unfollow(FollowedUrList):
             now = time.time()
 
             Unfollowed += 1
-            print ('Unfollowed '),Unfollowed,('accounts')
+#             print ('Unfollowed '),Unfollowed,('accounts')
 
         except Exception as e:
-            print (e)
+#             print (e)
             pass
 
     print ('UNFOLLOWED ACCOUNTS FOR TODAY:'),Unfollowed
