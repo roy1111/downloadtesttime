@@ -267,6 +267,7 @@ while True:
 #     ## checks if 24 hours had passed - if not, waits until 24H and 2 minutes will pass
 #     afterr = time.time()
 #     LoadinggTime = waitUntilTimeReached(noww, afterr, 86520)
+#     time.sleep(LoadinggTime)
 
 
         
