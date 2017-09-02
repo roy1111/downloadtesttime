@@ -40,7 +40,7 @@ def loginToAccount(UsrName, Password):
         submit_button.click()
         time.sleep(10)
         codee = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='securityCode']")))
-        codee.send_keys('136849')
+        codee.send_keys('785613')
         codee.send_keys(u'\ue007')
         time.sleep(20)
 
@@ -118,7 +118,9 @@ def followActiveAccount():
         print datetime.today()
 
         for x in range(0, 80): 
-
+            
+            time.sleep(5)
+            
             follow_button = driver.find_element_by_xpath("//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
             
             FollowedUrList.append(driver.current_url)
@@ -161,7 +163,7 @@ def followActiveAccount():
 
                         after = time.time()
 
-                        if int(after) - int(now) > 40:  ##THERE IS A TIME.SLEEP FOR 2 SEC
+                        if int(after) - int(now) > 35:  ##THERE IS A TIME.SLEEP FOR 2 SEC
                             AmountOfFectiveFollowed += 1
 #                             print ('Fictive Follow: '),AmountOfFectiveFollowed
                             break
