@@ -127,7 +127,7 @@ def followActiveAccount():
             
             after = time.time()
                         
-            LoadingTime = waitUntilTimeReached(now, after, 45)
+            LoadingTime = waitUntilTimeReached(now, after, 44)
             
             time.sleep(LoadingTime)
 
