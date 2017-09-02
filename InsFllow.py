@@ -100,6 +100,7 @@ def waitUntilTimeReached(FirstTime, SecondTime, TimeDesiredToSleep):
 def followActiveAccount():
     AmountOfActiveFollowed = 0
     AmountOfFectiveFollowed = 0
+    now = time.time()
     index = 0
     FollowedUrList = []
 
@@ -112,7 +113,7 @@ def followActiveAccount():
 #     print ("Site At Profile: "),driver.title.encode('utf-8')
     time.sleep(2)
 
-    for y in range(0, 12):
+    for y in range(0, 8):
         
         print datetime.today()
 
@@ -121,6 +122,12 @@ def followActiveAccount():
             follow_button = driver.find_element_by_xpath("//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
             
             FollowedUrList.append(driver.current_url)
+            
+            after = time.time()
+                        
+            LoadingTime = waitUntilTimeReached(now, after, 45)
+            
+            time.sleep(LoadingTime)
 
             follow_button.click()
             
@@ -129,7 +136,6 @@ def followActiveAccount():
             WebDriverWait(driver, 10).until(EC.presence_of_element_located(
                 (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
             
-
             enterCelebrityAccountFollowers(celebrityAccountURL)
             index = 0
 
@@ -155,7 +161,7 @@ def followActiveAccount():
 
                         after = time.time()
 
-                        if int(after) - int(now) > 43:  ##THERE IS A TIME.SLEEP FOR 2 SEC
+                        if int(after) - int(now) > 40:  ##THERE IS A TIME.SLEEP FOR 2 SEC
                             AmountOfFectiveFollowed += 1
 #                             print ('Fictive Follow: '),AmountOfFectiveFollowed
                             break
@@ -163,9 +169,6 @@ def followActiveAccount():
                         ## CHECKS IF ACCOUNT HAS MORE THAN 40 POSTS - IF DOES, FOLLOWED
                         elif 40 <= int(PostAmount) < 200:
 #                             print ('Active Follow: '),AmountOfActiveFollowed
-                            after = time.time()
-                            LoadingTime = waitUntilTimeReached(now, after, 43.5)
-                            time.sleep(LoadingTime)
                             AmountOfActiveFollowed += 1
                             break
 
@@ -200,11 +203,18 @@ def Unfollow(FollowedUrList):
             
             after = time.time()
 
-            LoadingTime = waitUntilTimeReached(now, after, 44.5)
+            LoadingTime = waitUntilTimeReached(now, after, 35)
+            
             time.sleep(LoadingTime)
                     
             Unfollow_button = WebDriverWait(driver, 2).until(EC.presence_of_element_located(
                     (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
+            
+            after = time.time()
+
+            LoadingTime = waitUntilTimeReached(now, after, 45)
+            
+            time.sleep(LoadingTime)
 
             Unfollow_button.click()
             
@@ -248,5 +258,5 @@ loginToAccount(username, password)
 while True:
     Followed = followActiveAccount()
     Unfollow(Followed)
-
+    break
   
