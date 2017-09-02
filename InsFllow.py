@@ -124,10 +124,10 @@ def followActiveAccount():
 
             follow_button.click()
             
+            now = time.time()
+            
             WebDriverWait(driver, 10).until(EC.presence_of_element_located(
                 (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
-            
-            now = time.time()
             
 
             enterCelebrityAccountFollowers(celebrityAccountURL)
@@ -155,7 +155,7 @@ def followActiveAccount():
 
                         after = time.time()
 
-                        if int(after) - int(now) > 44:  ##THERE IS A TIME.SLEEP FOR 2 SEC
+                        if int(after) - int(now) > 43:  ##THERE IS A TIME.SLEEP FOR 2 SEC
                             AmountOfFectiveFollowed += 1
 #                             print ('Fictive Follow: '),AmountOfFectiveFollowed
                             break
@@ -164,7 +164,7 @@ def followActiveAccount():
                         elif 40 <= int(PostAmount) < 200:
 #                             print ('Active Follow: '),AmountOfActiveFollowed
                             after = time.time()
-                            LoadingTime = waitUntilTimeReached(now, after, 44)
+                            LoadingTime = waitUntilTimeReached(now, after, 43.5)
                             time.sleep(LoadingTime)
                             AmountOfActiveFollowed += 1
                             break
@@ -200,7 +200,7 @@ def Unfollow(FollowedUrList):
             
             after = time.time()
 
-            LoadingTime = waitUntilTimeReached(now, after, 44)
+            LoadingTime = waitUntilTimeReached(now, after, 44.5)
             time.sleep(LoadingTime)
                     
             Unfollow_button = WebDriverWait(driver, 2).until(EC.presence_of_element_located(
@@ -209,6 +209,10 @@ def Unfollow(FollowedUrList):
             Unfollow_button.click()
             
             now = time.time()
+            
+            time.sleep(2)
+            
+            driver.refresh()
 
             WebDriverWait(driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, "//button[contains(.,'Follow')]")))
@@ -218,7 +222,7 @@ def Unfollow(FollowedUrList):
 #             print ('Unfollowed '),Unfollowed,('accounts')
 
         except Exception as e:
-#             print (e)
+            print (e)
             pass
 
     print ('UNFOLLOWED ACCOUNTS FOR TODAY:'),Unfollowed
