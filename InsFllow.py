@@ -113,7 +113,7 @@ def followActiveAccount():
 #     print ("Site At Profile: "),driver.title.encode('utf-8')
     time.sleep(2)
 
-    for y in range(0, 8):
+    for y in range(0, 6):
         
         print datetime.today()
 
@@ -214,7 +214,7 @@ def Unfollow(FollowedUrList):
             
             after = time.time()
 
-            LoadingTime = waitUntilTimeReached(now, after, 45)
+            LoadingTime = waitUntilTimeReached(now, after, 44)
             
             time.sleep(LoadingTime)
 
@@ -258,7 +258,16 @@ driver.maximize_window()
 loginToAccount(username, password)
 
 while True:
+#     noww = time.time()
+    
     Followed = followActiveAccount()
     Unfollow(Followed)
     break
+    
+#     ## checks if 24 hours had passed - if not, waits until 24H and 2 minutes will pass
+#     afterr = time.time()
+#     LoadinggTime = waitUntilTimeReached(noww, afterr, 86520)
+
+
+        
   
