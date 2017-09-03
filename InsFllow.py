@@ -251,7 +251,7 @@ def Unfollow(FollowedUrList):
 #             print ('Unfollowed '),Unfollowed,('accounts')
 
         except Exception as e:
-            print (e)
+#             print (e)
             pass
     
     print ('UNFOLLOWED ACCOUNTS FOR TODAY:'),Unfollowed
