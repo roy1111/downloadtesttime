@@ -40,7 +40,7 @@ def loginToAccount(UsrName, Password):
         submit_button.click()
         time.sleep(10)
         codee = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='securityCode']")))
-        codee.send_keys('134520')
+        codee.send_keys('805461')
         codee.send_keys(u'\ue007')
         time.sleep(20)
 
@@ -113,7 +113,7 @@ def followActiveAccount():
 #     print ("Site At Profile: "),driver.title.encode('utf-8')
     time.sleep(2)
 
-    for y in range(0, 6):
+    for y in range(0, 12):
         
         print datetime.today()
         startHour = time.time()
@@ -122,13 +122,18 @@ def followActiveAccount():
             
             try:
                 follow_button = driver.find_element_by_xpath("//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
+                
                 follow_button.click()
                 
                 FollowedUrList.append(driver.current_url)
+                
+                time.sleep(2)
 
-                WebDriverWait(driver, 10).until(EC.presence_of_element_located(
-                    (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
-            except:
+#                 WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+#                     (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
+
+            except Exception as e:
+                print e
                 pass
                      
             now = time.time()
@@ -158,8 +163,9 @@ def followActiveAccount():
 
                         after = time.time()
 
-                        if int(after) - int(now) > 42.5:  ##THERE IS A TIME.SLEEP FOR 2 SEC
+                        if int(after) - int(now) > 37.5:  ##THERE IS A TIME.SLEEP FOR 2 SEC
                             AmountOfFectiveFollowed += 1
+                            time.sleep(2)
 #                             print ('Fictive Follow: '),AmountOfFectiveFollowed
                             break
 
@@ -168,7 +174,7 @@ def followActiveAccount():
                             AmountOfActiveFollowed += 1
                     
                             after = time.time()
-                            LoadingTime = waitUntilTimeReached(now, after, 43)
+                            LoadingTime = waitUntilTimeReached(now, after, 41)
                             time.sleep(LoadingTime)
                             
 #                             print ('Active Follow: '),AmountOfActiveFollowed
@@ -187,7 +193,7 @@ def followActiveAccount():
                         driver.back()
 
                 except Exception as e:
-#                     print (e)
+                    print (e)
                     enterCelebrityAccountFollowers(celebrityAccountURL)
                     index = 0
         
@@ -213,45 +219,40 @@ def Unfollow(FollowedUrList):
             
             after = time.time()
 
-            LoadingTime = waitUntilTimeReached(now, after, 35)
+            LoadingTime = waitUntilTimeReached(now, after, 42)
             
             time.sleep(LoadingTime)
+                
+            try:
+                Unfollow_button = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
+                Unfollow_button.click()
+                Unfollowed += 1
                     
-            Unfollow_button = WebDriverWait(driver, 5).until(EC.presence_of_element_located(
-                    (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
-            
-            after = time.time()
-
-            LoadingTime = waitUntilTimeReached(now, after, 43.5)
-            
-            time.sleep(LoadingTime)
-
-            Unfollow_button.click()
-            
-            Unfollowed += 1
-            
+            except Exception as e:
+                print (e)
+                pass
+           
             if Unfollowed % 80 == 0:
                 counterforwait += 1
                 TimeTowait = 3600 * counterforwait
                 EndHour = time.time()
                 LoadinggTimme = waitUntilTimeReached(Starthour, EndHour, TimeTowait)
-                time.sleep(LoadinggTimme - 43)
+                time.sleep(LoadinggTimme)
                 print datetime.today()
 
             now = time.time()
-            time.sleep(2)
             
-            driver.refresh()
+            time.sleep(2)
 
-            WebDriverWait(driver, 5).until(EC.presence_of_element_located(
-                (By.XPATH, "//button[contains(.,'Follow')]")))
+#             WebDriverWait(driver, 5).until(EC.presence_of_element_located(
+#                 (By.XPATH, "//button[contains(.,'Follow')]")))
             
 
             
 #             print ('Unfollowed '),Unfollowed,('accounts')
 
         except Exception as e:
-#             print (e)
+            print (e)
             pass
     
     print ('UNFOLLOWED ACCOUNTS FOR TODAY:'),Unfollowed
@@ -275,16 +276,17 @@ driver.maximize_window()
 loginToAccount(username, password)
 
 while True:
-#     noww = time.time()
+    noww = time.time()
     
     Followed = followActiveAccount()
     Unfollow(Followed)
-    break
     
-#     ## checks if 24 hours had passed - if not, waits until 24H and 2 minutes will pass
-#     afterr = time.time()
-#     LoadinggTime = waitUntilTimeReached(noww, afterr, 86520)
-#     time.sleep(LoadinggTime)
+    ## checks if 24 hours had passed - if not, waits until 24H and 2 minutes will pass
+    afterr = time.time()
+    LoadinggTime = waitUntilTimeReached(noww, afterr, 86520)
+    time.sleep(LoadinggTime)
+    print 'PROGRAM FINISHED FOR TODAY' ,datetime.today()
+    break
 
 
         
