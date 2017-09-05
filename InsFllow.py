@@ -127,10 +127,8 @@ def followActiveAccount():
                 
                 FollowedUrList.append(driver.current_url)
                 
-                time.sleep(2)
-
-#                 WebDriverWait(driver, 10).until(EC.presence_of_element_located(
-#                     (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
+                WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+                    (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
 
             except Exception as e:
                 print e
@@ -163,7 +161,7 @@ def followActiveAccount():
 
                         after = time.time()
 
-                        if int(after) - int(now) > 37.5:  ##THERE IS A TIME.SLEEP FOR 2 SEC
+                        if int(after) - int(now) > 39.5:  ##THERE IS A TIME.SLEEP FOR 2 SEC
                             AmountOfFectiveFollowed += 1
                             time.sleep(2)
 #                             print ('Fictive Follow: '),AmountOfFectiveFollowed
