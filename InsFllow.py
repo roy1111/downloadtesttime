@@ -126,8 +126,8 @@ def followActiveAccount():
                 follow_button.click()
                 
                 FollowedUrList.append(driver.current_url)
-                
-                WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+
+                 WebDriverWait(driver, 10).until(EC.presence_of_element_located(
                     (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
 
             except Exception as e:
@@ -206,12 +206,13 @@ def followActiveAccount():
 
 
 def Unfollow(FollowedUrList):
+    
     Unfollowed = 0
     Starthour = time.time()
     now = time.time()
     counterforwait = 0
 
-    for url in FollowedUrList:
+    for Name in FollowedUrList:
         try:
             driver.get(url)
             
@@ -240,13 +241,10 @@ def Unfollow(FollowedUrList):
 
             now = time.time()
             
-            time.sleep(2)
-
-#             WebDriverWait(driver, 5).until(EC.presence_of_element_located(
-#                 (By.XPATH, "//button[contains(.,'Follow')]")))
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+                (By.XPATH, "//button[contains(.,'Follow')]")))
             
-
-            
+           
 #             print ('Unfollowed '),Unfollowed,('accounts')
 
         except Exception as e:
@@ -283,7 +281,9 @@ while True:
     afterr = time.time()
     LoadinggTime = waitUntilTimeReached(noww, afterr, 86520)
     time.sleep(LoadinggTime)
+    
     print 'PROGRAM FINISHED FOR TODAY' ,datetime.today()
+    
     break
 
 
