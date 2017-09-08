@@ -127,7 +127,7 @@ def followActiveAccount():
                 
                 FollowedUrList.append(driver.current_url)
 
-                 WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+                WebDriverWait(driver, 10).until(EC.presence_of_element_located(
                     (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
 
             except Exception as e:
