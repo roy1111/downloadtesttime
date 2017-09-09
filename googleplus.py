@@ -7,12 +7,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-from pyvirtualdisplay import Display
-
-
-display = Display(visible=0, size=(800, 600))
-display.start()
-
 
 def user_invitation_code():
     codes = []
@@ -165,7 +159,6 @@ while True:
     print 'Waiting For The Next Account...'
     time.sleep(2700)  ## DEPENDS ON HOW MANY USERS YOU HAVE - 45 min per upload
 
-display.stop()
 
 
 
