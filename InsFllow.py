@@ -1,7 +1,7 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 from selenium import webdriver
-from datetime import datetime
+from random import randint
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,254 +9,124 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
 
-# from pyvirtualdisplay import Display
-#
-# # initiate virtual display
-# display = Display(visible=0, size=(1080, 920))
-# display.start()
+def user_invitation_code():
+    codes = []
+    codes.append('k23154415')  ## works for kkkk1123 - app nana user
 
+    return codes
 
-def loginToAccount(UsrName, Password):
-    ## GOES TO INSTAGRAM LOGIN PAGE
-    driver.get('https://www.instagram.com/accounts/login/')
-    print (driver.title).encode('utf-8')
+def google_password():
+    pas = '158158123123'
+    passwords = []
+    passwords.append(pas)   ## for dilanhilo59
+    passwords.append(pas)   ## for everybody3456
 
-    ## ENTERS THE USERNAME AND PASSWORD
-    user = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
-    user.send_keys(UsrName)
-    time.sleep(1)
-    passwordd = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='password']")))
-    passwordd.send_keys(Password)
-    time.sleep(1)
-    driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
-    time.sleep(2)
-    print (driver.title).encode('utf-8')
-    print (driver.current_url)
-    
-      ## DELETE AFTER
-    try:
-        
-        submit_button = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//button[contains(.,'Send Security Code')]"))) 
-        submit_button.click()
-        time.sleep(10)
-        codee = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='securityCode']")))
-        codee.send_keys('894026')
-        codee.send_keys(u'\ue007')
-        time.sleep(20)
+    return passwords
 
-        driver.get('https://www.instagram.com/accounts/login/')
-        print driver.title.encode('utf-8')
+def google_users():
 
-        ## ENTERS THE USERNAME AND PASSWORD
-        user = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='username']")))
-        user.send_keys(UsrName)
-        time.sleep(1)
-        passwordd = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name='password']")))
-        passwordd.send_keys(Password)
-        time.sleep(1)
-        driver.find_element_by_xpath("//button[contains(.,'Log in')]").click()
-        time.sleep(2)
-        print driver.title.encode('utf-8')
-        print (driver.current_url)
-        
-    except:
-            pass
-     
-    
-   
-def enterCelebrityAccountFollowers(url):
-    ## GOES TO THE CELEBRITY ACCOUNT
-    driver.get(url)
+    users = []
+    # users.append('rikitiki145')
+    # users.append('roey3092')
+    # users.append('royhamster67')
+    # users.append('adamnegris1')
+    users.append('dilanhilo59')
+    users.append('everybody3456')
 
-    ## ENTERS CELEBRITY ACCOUNT FOLLOWERS
-    Followers_button = WebDriverWait(driver, 5).until(
-        EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'followers')))
-    Followers_button.click()
-#     print (driver.title).encode('utf-8')
+    return users
 
-
-def getInsideSomeAccount(index):
-    ## ENTERS THE ACCOUNT PROFILE AND WAITS FOR ALL PROFILES TO LOAD - THEN CLICKS ON PROFILE BY INDEX
-    WebDriverWait(driver, 5).until(
-        EC.presence_of_all_elements_located((By.CLASS_NAME, '_6e4x5')))  ##ELEMENT NEEDS CHANGE* FINDS ALL LIST ITEMS
-    Profile = WebDriverWait(driver, 5).until(
-        EC.presence_of_all_elements_located((By.XPATH, "//*[@class='_2g7d5 notranslate _o5iw8']")))[
-        index]  ## ELEMENT NEEDS CHANGE
-
-    Profile.click()
-
-
-def waitUntilTimeReached(FirstTime, SecondTime, TimeDesiredToSleep):
-    TimePassed = SecondTime - FirstTime
-    SleepingTime = TimeDesiredToSleep - TimePassed
-
-    if SleepingTime < 0:
-        return 0
-
-    else:
-        return SleepingTime
-
-
-def followActiveAccount():
-    AmountOfActiveFollowed = 0
-    AmountOfFectiveFollowed = 0
-    now = time.time()
+def sentences(code):
+    all = []
     index = 0
-    FollowedUrList = []
 
-    enterCelebrityAccountFollowers(celebrityAccountURL)
-    getInsideSomeAccount(index)
+    code1 = 'Please enter my Invitation Code!! ITS:     ', code, "     Just please make sure you comment on this post your Invitation Code so I will know to enter your's -     ", code
+    code2 = 'Enter my invitation code for more Nanas - 2500:     ', code, '     But you must make sure you have more than 15K Nanas'
+    code3 = "'Please Put My Code And I Will Put your's in:     ", code
+    code4 = 'Please help me get more nanas:     ', code, '     (and help yourself too, for each code you put in we both get 2500 Nanas )     ', code
+    code5 = code,     ' please help me'
+    code6 = code,     ' <3'
 
-    WebDriverWait(driver, 5).until(EC.presence_of_element_located(
-        (By.CLASS_NAME, '_fd86t')))  ##ELEMENT NEEDS CHANGE* WAITS UNTIL THE AMOUNT POSTS ELEMENT IS AVAILABLE
+    all.append(code)
+    all.append(code1)
+    all.append(code2)
+    all.append(code3)
+    all.append(code4)
+    all.append(code5)
+    all.append(code6)
 
-#     print ("Site At Profile: "),driver.title.encode('utf-8')
-    time.sleep(2)
+    index = randint(0, all.__len__())
+    random_sentence = all[index]
 
-    for y in range(0, 12):
-        
-        print datetime.today()
-        startHour = time.time()
-
-        for x in range(0, 80): 
-            
-            try:
-                follow_button = driver.find_element_by_xpath("//button[contains(.,'Follow')]")  ## NO NEED TO CHANGE ELEMENT
-                
-                follow_button.click()
-                
-                FollowedUrList.append(driver.current_url)
-
-                WebDriverWait(driver, 20).until(EC.presence_of_element_located(
-                    (By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
-
-            except Exception as e:
-                print e
-                pass
-                     
-            now = time.time()
-
-            enterCelebrityAccountFollowers(celebrityAccountURL)
-            index = 0
-
-            while True:
-
-                try:
-                    getInsideSomeAccount(index)
-                    time.sleep(2)
-                    WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME,
-                                                                                   '_fd86t')))  ##ELEMENT NEEDS CHANGE* WAITS UNTIL THE AMOUNT POSTS ELEMENT IS AVAILABLE
-#                     print ("Site At Profile: "),driver.title.encode('utf-8')
-
-                    PostAmount = driver.find_element_by_class_name('_fd86t').text
-#                     print ('Number Of Posts: '),PostAmount
-
-                    follow_button1 = driver.find_elements_by_xpath(
-                        "//button[contains(.,'Following')]")  ## NO NEED TO CHANGE ELEMENT
-                    follow_button2 = driver.find_elements_by_xpath(
-                        "//button[contains(.,'Requested')]")  ## NO NEED TO CHANGE ELEMENT
-
-                    ## CHECKS IF ACCOUNT HAS NOT ALREADY BEEN FOLLOWED
-                    if follow_button1.__len__() == 0 and follow_button2.__len__() == 0:
-
-                        after = time.time()
-
-                        if int(after) - int(now) > 39.5:  ##THERE IS A TIME.SLEEP FOR 2 SEC
-                            AmountOfFectiveFollowed += 1
-                            time.sleep(2)
-#                             print ('Fictive Follow: '),AmountOfFectiveFollowed
-                            break
-
-                        ## CHECKS IF ACCOUNT HAS MORE THAN 40 POSTS - IF DOES, FOLLOWED
-                        elif 40 <= int(PostAmount) < 200:
-                            AmountOfActiveFollowed += 1
-                    
-                            after = time.time()
-                            LoadingTime = waitUntilTimeReached(now, after, 41)
-                            time.sleep(LoadingTime)
-                            
-#                             print ('Active Follow: '),AmountOfActiveFollowed
-
-                            break
-
-                    ## IF, ONE OF THE IF'S STATEMENTS ARE FALSE, DRIVER GOES BACK TO LIST TO TRY NEXT ACCOUNT
-                    index += 1
-
-                    ## AFTER 20 PROFILES, LIST INDEX WILL BE OUT OF RANGE, SO THIS WILL HANDLE
-                    if index > 19:
-                        index = 0
-                        enterCelebrityAccountFollowers(celebrityAccountURL)
-
-                    else:
-                        driver.back()
-
-                except Exception as e:
-                    print (e)
-                    enterCelebrityAccountFollowers(celebrityAccountURL)
-                    index = 0
-        
-        endHour = time.time()
-        
-        LoadinggTimee = waitUntilTimeReached(startHour, endHour, 3600)
-        time.sleep(LoadinggTimee)
-        
-        
-    print ("TODAY PROGRAM FOLLOWED: "),FollowedUrList.__len__()
-    return FollowedUrList
+    return random_sentence
 
 
-def Unfollow(FollowedUrList):
-    
-    Unfollowed = 0
-    Starthour = time.time()
-    now = time.time()
-    counterforwait = 0
+def login(user, password):
+    try:
+        join_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@class='O0WRkf zZhnYe C0oVfc KNnOOe xRXSA']")))
+        join_button.click()
 
-    for url in FollowedUrList:
+        need_to_click = driver.find_element_by_xpath("//*[@class='whsOnd zHQkBf']")
+        need_to_click.click()
+
+        userName = driver.find_element_by_xpath("//input[@name='identifier']")
+        userName.send_keys(user)
+        time.sleep(1)
+
+        nextt = driver.find_element_by_xpath("//*[@id='identifierNext']")
+        nextt.click()
+        time.sleep(5)
+
+        passwordd = driver.find_element_by_xpath("//*[@class='whsOnd zHQkBf']")
+        passwordd.send_keys(password)
+        time.sleep(1)
+
+        nextt = driver.find_element_by_xpath("//*[@id='passwordNext']")
+        nextt.click()
+
+        print 'Site Reached: ', driver.title
+
+        # join_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@class='O0WRkf oG5Srb C0oVfc KNnOOe xQl6Gb']")))
+        # join_button.click()
+
+        time.sleep(3)
+
+        print 'Logged in to: ', user
+
+    except:
+        pass
+
+
+def upload_code(invitation_code):
         try:
-            driver.get(url)
-            
-            after = time.time()
+            search_box = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[text()='What would you like to share?']")))
+            search_box.click()
+            time.sleep(3)
+            print 'Site Reached: ', driver.title
 
-            LoadingTime = waitUntilTimeReached(now, after, 42)
-            
-            time.sleep(LoadingTime)
-                
-            try:
-                Unfollow_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//button[contains(.,'Following') or contains(.,'Requested')]")))
-                Unfollow_button.click()
-                Unfollowed += 1
-                    
-            except Exception as e:
-                print (e)
-                pass
-           
-            if Unfollowed % 80 == 0:
-                counterforwait += 1
-                TimeTowait = 3600 * counterforwait
-                EndHour = time.time()
-                LoadinggTimme = waitUntilTimeReached(Starthour, EndHour, TimeTowait)
-                time.sleep(LoadinggTimme)
-                print datetime.today()
+            text_zone = driver.find_element_by_tag_name('textarea')
+            description = sentences(invitation_code)
+            text_zone.send_keys(description)
+            print 'The Description Printed:', description
+            time.sleep(1)
 
-            now = time.time()
-            
-            WebDriverWait(driver, 20).until(EC.presence_of_element_located(
-                (By.XPATH, "//button[contains(.,'Follow')]")))
-            
-           
-#             print ('Unfollowed '),Unfollowed,('accounts')
+            publish = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//span[text()='Post']")))
+            publish.click()
 
-        except Exception as e:
-            print (e)
+            time.sleep(1)
+
+            share = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//div[@data-name='Share my code']")))
+            share.click()
+
+            print 'Code Uploaded to:', driver.title
+            time.sleep(2)
+
+
+        except:
             pass
-    
-    print ('UNFOLLOWED ACCOUNTS FOR TODAY:'),Unfollowed
+            text_zone.clear()
+            driver.refresh()
 
 
-username = 'onpoint_facts'
-password = '158158123'
-celebrityAccountURL = 'https://www.instagram.com/9gag/'
 
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH = r"/app/.chromedriver/bin/chromedriver"
@@ -269,22 +139,31 @@ driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chro
 
 driver.maximize_window()
 
-loginToAccount(username, password)
+google_plus_url = 'https://plus.google.com/communities/111173415890026985501'
+
+driver.get(google_plus_url)
+print 'Site Reached: ', driver.title
+
+login('everybody3456', '158158123123')
 
 while True:
-    noww = time.time()
-    
-    Followed = followActiveAccount()
-    Unfollow(Followed)
-    
-    ## checks if 24 hours had passed - if not, waits until 24H and 2 minutes will pass
-    afterr = time.time()
-    LoadinggTime = waitUntilTimeReached(noww, afterr, 86520)
-    time.sleep(LoadinggTime)
-    
-    print 'PROGRAM FINISHED FOR TODAY' ,datetime.today()
-    
-    break
+
+    Codes = user_invitation_code()
+
+    code = Codes.pop()
+
+    driver.get(google_plus_url)
+    print 'Site Reached: ', driver.title
+
+    upload_code(code)
+
+    print 'Waiting For The Next Account...'
+    time.sleep(2700)  ## DEPENDS ON HOW MANY USERS YOU HAVE - 45 min per upload
+
+
+
+
+
 
 
         
