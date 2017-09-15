@@ -136,7 +136,7 @@ chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
-driver.maximize_window()
+# driver.maximize_window()
 
 google_plus_url = 'https://plus.google.com/communities/111173415890026985501'
 
