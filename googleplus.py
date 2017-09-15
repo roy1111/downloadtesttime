@@ -129,7 +129,7 @@ def upload_code(invitation_code):
 
 GOOGLE_CHROME_BIN = r"/app/.apt/usr/bin/google-chrome"
 CHROMEDRIVER_PATH = r"/app/.chromedriver/bin/chromedriver"
-GOOGLE_CHROME_CHANNEL = "stable"
+GOOGLE_CHROME_CHANNEL = "beta"
 
 chrome_options = Options()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
